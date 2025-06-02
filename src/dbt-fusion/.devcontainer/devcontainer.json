@@ -10,8 +10,8 @@
   "remoteUser": "vscode",
   // Mount user's .dbt/.ssh folders to access profiles.yml and ssh keys
   "mounts": [
-    "source=${localEnv:HOME}/.dbt,target=/home/vscode/.dbt,type=bind",
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
+    "source=${localEnv:HOME}/.dbt,target=/home/vscode/.dbt,type=bind", // Need for dbt-fusion and extension authentication
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind" // Mount if git authentication is through SSH keys
   ],
   // Workspace configuration
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
@@ -50,6 +50,26 @@
             "source.organizeImports": "explicit",
             "source.fixAll": "explicit"
           }
+        },
+        "yaml.schemas": { // dbt YAML validator using JSON Schema (https://github.com/dbt-labs/dbt-jsonschema)
+          "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/dbt_yml_files-latest.json": [
+            "/**/*.yml",
+            "!profiles.yml",
+            "!dbt_project.yml",
+            "!packages.yml",
+            "!selectors.yml",
+            "!profile_template.yml",
+            "!package-lock.yml"
+          ],
+          "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/dbt_project-latest.json": [
+            "dbt_project.yml"
+          ],
+          "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/selectors-latest.json": [
+            "selectors.yml"
+          ],
+          "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/packages-latest.json": [
+            "packages.yml"
+          ]
         }
       },
       // Identifiers for extensions to install when the container is created
@@ -67,7 +87,7 @@
       ]
     }
   },
-  // Features to install in the container
+  // Features to automatically install extensions in the container
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,

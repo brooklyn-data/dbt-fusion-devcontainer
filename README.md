@@ -5,11 +5,11 @@ A development container template for dbt projects that use the new fusion engine
 ## What's a dev container?
 - A dev container is a Docker container specifically configured to serve as a fully featured, consistent, isolated, and portable development environment
 - Defined in `.devcontainer/devcontainer.json` within a project
-- Read more about them [here](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
+- Read more about them in the [GitHub Docs](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
 
 ## Requirements
-- Docker Desktop
-- VS Code with Dev Containers (or Remote Explorer) extension
+- [Docker Desktop](https://docs.docker.com/desktop/)
+- VS Code with the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) (or [Remote Explorer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-explorer)) extension
 - A `dbt` project with a proper:
   - `dbt_project.yml` in the workspace/project folder root
   - Proper configs in your local `~/.dbt` directory
@@ -20,12 +20,12 @@ A development container template for dbt projects that use the new fusion engine
   - Also compatible with Cursor
 - Base Python development environment / tools
   - `Python 3.12` and `uv`
-  - Note: The `dbt-fusion` engine does NOT need Python to run. These are added to the base image to enable flexibility for being able to easily add other Python-based dev tools or to run arbitrary Python in the dev container.
+  - __Note:__ The `dbt-fusion` engine does NOT need Python to run. These are added to the base image to enable flexibility for being able to easily add other Python-based dev tools or to run arbitrary Python in the dev container.
 - Git
 - Pre-configured settings for SQL, YAML, and Python
 
 ## Usage
-For a detailed configuration, check out the example configuration [here](https://github.com/brooklyn-data/dbt-fusion-devcontainer/blob/main/src/dbt-fusion/.devcontainer/devcontainer.json).
+For a detailed configuration (and comments about what each is for), check out the example configuration [here](https://github.com/brooklyn-data/dbt-fusion-devcontainer/blob/main/src/dbt-fusion/.devcontainer/devcontainer.json).
 
 1. Add the following to your project's `.devcontainer/devcontainer.json`:
    ```json
@@ -34,7 +34,7 @@ For a detailed configuration, check out the example configuration [here](https:/
      "remoteUser": "vscode",
      "mounts": [
        "source=${localEnv:HOME}/.dbt,target=/home/vscode/.dbt,type=bind",
-       "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind" # mount if git authentication uses SSH
+       "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind" // mount if git authentication uses SSH
      ],
      "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
      "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -57,7 +57,27 @@ For a detailed configuration, check out the example configuration [here](https:/
            "[python]": {
              "editor.defaultFormatter": "charliermarsh.ruff",
              "editor.formatOnSave": true
-           }
+           },
+           "yaml.schemas": {
+             "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/dbt_yml_files-latest.json": [
+               "/**/*.yml",
+               "!profiles.yml",
+               "!dbt_project.yml",
+               "!packages.yml",
+               "!selectors.yml",
+               "!profile_template.yml",
+               "!package-lock.yml"
+             ],
+             "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/dbt_project-latest.json": [
+               "dbt_project.yml"
+             ],
+             "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/selectors-latest.json": [
+               "selectors.yml"
+             ],
+             "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/packages-latest.json": [
+               "packages.yml"
+             ]
+          }
          },
          "extensions": [
            "ms-python.python",
@@ -92,9 +112,12 @@ For a detailed configuration, check out the example configuration [here](https:/
 
 3. Allow some time for the extensions to install and follow dbt's prompt to install `dbt-fusion`
 
-## Resources
+## dbt Fusion Resources
 - [Meet the dbt Fusion Engine... - Jason Ganz](https://docs.getdbt.com/blog/dbt-fusion-engine)
 - [Up & Running with dbt Fusion Engine and VS Code - Anders Swanson](https://www.loom.com/share/c6f72d2525b24178a76c6679e43dbc06)
 - [Docs: dbt Fusion](https://docs.getdbt.com/docs/fusion/about-fusion)
 - [GitHub: dbt-fusion](https://github.com/dbt-labs/dbt-fusion)
 - [dbt Fusion Slack Channel](https://getdbt.slack.com/archives/C088YCAB6GH)
+
+## About Brooklyn Data
+Brooklyn Data offers full-service capabilities for implementing the modern data stack. Our data experts help you develop impactful data strategies, manage data effectively, and leverage AI to activate your data. Read more at [brooklyndata.co](https://brooklyndata.co). 

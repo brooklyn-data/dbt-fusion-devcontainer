@@ -1,0 +1,84 @@
+{
+  // Base image configuration
+  "name": "dbt-fusion-devcontainer",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "args": {
+      "PYTHON_VERSION": "${localEnv:PYTHON_VERSION:3.12}"
+    }
+  },
+  "remoteUser": "vscode",
+  // Mount user's .dbt/.ssh folders to access profiles.yml and ssh keys
+  "mounts": [
+    "source=${localEnv:HOME}/.dbt,target=/home/vscode/.dbt,type=bind",
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
+  ],
+  // Workspace configuration
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "dbt.dbtPath": "/home/vscode/.local/bin/dbt",
+        "files.associations": {
+          "*.sql": "sql",
+          "*.yml": "yaml"
+        },
+        "[sql]": {
+          "editor.defaultFormatter": "dbtLabsInc.dbt",
+          "editor.formatOnSave": true,
+          "editor.formatOnType": true,
+          "editor.tabSize": 2,
+          "editor.insertSpaces": true
+        },
+        "[yaml]": {
+          "editor.defaultFormatter": "dbtLabsInc.dbt",
+          "editor.formatOnSave": true,
+          "editor.formatOnType": true,
+          "editor.tabSize": 2,
+          "editor.insertSpaces": true
+        },
+        "[python]": {
+          "editor.wordBasedSuggestions": "allDocuments",
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
+          }
+        }
+      },
+      // Identifiers for extensions to install when the container is created
+      "extensions": [
+        "ms-python.python",              // Python language support
+        "charliermarsh.ruff",           // Ruff linter and formatter
+        "ms-python.vscode-pylance",     // Python language server
+        "tamasfe.even-better-toml",     // TOML file support
+        "EditorConfig.EditorConfig",    // EditorConfig support
+        "eamodio.gitlens",             // Enhanced Git capabilities
+        "github.vscode-pull-request-github", // GitHub PR support
+        "visualstudioexptteam.vscodeintellicode", // AI-assisted IntelliSense
+        "dbtlabsinc.dbt",              // Official dbt extension
+        "redhat.vscode-yaml"           // YAML support
+      ]
+    }
+  },
+  // Features to install in the container
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "username": "vscode",
+      "upgradePackages": true
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": true
+    }
+  }
+}
+
+

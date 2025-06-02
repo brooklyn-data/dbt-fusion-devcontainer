@@ -1,11 +1,11 @@
-# dbt Fusion DevContainer Template
+# dbt Fusion Dev Container Template
 
 A development container template for dbt projects that use the new fusion engine with the official dbt VS Code extension. 
 
 ## What's a dev container?
 - A dev container is a Docker container specifically configured to serve as a fully featured, consistent, isolated, and portable development environment
 - Defined in `.devcontainer/devcontainer.json` within a project
-- Read more about them [here](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)!
+- Read more about them [here](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
 
 ## Requirements
 - Docker Desktop
@@ -25,16 +25,16 @@ A development container template for dbt projects that use the new fusion engine
 - Pre-configured settings for SQL, YAML, and Python
 
 ## Usage
-For a detailed configuration, check out the example configuration [here](https://github.com/jairus-m/dbt-fusion-devcontainer/blob/main/src/dbt-fusion/.devcontainer/devcontainer.json).
+For a detailed configuration, check out the example configuration [here](https://github.com/brooklyn-data/dbt-fusion-devcontainer/blob/main/src/dbt-fusion/.devcontainer/devcontainer.json).
 
 1. Add the following to your project's `.devcontainer/devcontainer.json`:
    ```json
    {
-     "image": "ghcr.io/jairus-m/dbt-fusion-devcontainer/dbt-fusion:latest",
+     "image": "ghcr.io/brooklyn-data/dbt-fusion-devcontainer/dbt-fusion:latest",
      "remoteUser": "vscode",
      "mounts": [
        "source=${localEnv:HOME}/.dbt,target=/home/vscode/.dbt,type=bind",
-       "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind" # if git authentication uses SSH
+       "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind" # mount if git authentication uses SSH
      ],
      "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
      "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -88,7 +88,9 @@ For a detailed configuration, check out the example configuration [here](https:/
 
    > **Note**: The extensions with this configuration are installed by VS Code when the container starts for ease of setup. To manage the extension installation yourself, remove the `"features"` key from the `devcontainer.json` file.
 
-2. Open your project in VS Code and use the Dev Containers (or Remote Explorer) extension to build and run the container.
+2. Open your project in VS Code and use the Dev Containers (or Remote Explorer) extension to build and run the container. ([docs](https://code.visualstudio.com/docs/devcontainers/containers))
+
+3. Allow some time for the extensions to install and follow dbt's prompt to install `dbt-fusion`
 
 ## Resources
 - [Meet the dbt Fusion Engine... - Jason Ganz](https://docs.getdbt.com/blog/dbt-fusion-engine)

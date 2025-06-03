@@ -1,11 +1,21 @@
 # dbt Fusion Dev Container Template
-
-A development container template for dbt projects that use the new fusion engine with the official dbt VS Code extension. 
+A development container template for dbt projects that use [the new Fusion engine](https://github.com/dbt-labs/dbt-fusion) with the official dbt VS Code extension.
 
 ## What's a dev container?
 - A dev container is a Docker container specifically configured to serve as a fully featured, consistent, isolated, and portable development environment
 - Defined in `.devcontainer/devcontainer.json` within a project
-- Read more about them in the [GitHub Docs](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
+- Read more about them in [GitHub Docs](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
+
+## Why should I use dbt-fusion within a container? 
+[dbt-fusion](https://github.com/dbt-labs/dbt-fusion) is written in [Rust](https://www.rust-lang.org/), not Python, and isn't distributed through or installable from [PyPI](https://pypi.org/) like [dbt-core](https://pypi.org/project/dbt/) is. This means that Python-based virtual environment tools & package managers like `venv`, `pip`, or `uv` don't apply. Instead, the recommended installation method (either via the VS Code extension or directly from the command line) puts the `dbt-fusion` executable--a standalone binary CLI tool--in a directory available through your system’s `PATH`. 
+
+This makes it easy to run, but it can also lead to potential conflicts with other dbt installations, especially if you have both Python-based and Rust-based dbt CLIs on the same machine. If you want to avoid those conflicts or if you want to experiment with different `dbt-fusion` projects in an isolated environment without affecting existing setups, using a development container is a solid option!
+
+#### General benefits of using containers include:
+- Isolated environments for each project (preventing dependency and path conflicts)
+- Reproducible builds and consistent environments across teams
+- Faster setup and onboarding for new contributors
+- Simplified experimentation without impacting your main system configuration or other projects
 
 ## Requirements
 - [Docker Desktop](https://docs.docker.com/desktop/)

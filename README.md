@@ -1,11 +1,13 @@
 # dbt Fusion Dev Container Template
-
-A development container template for dbt projects that use the new fusion engine with the official dbt VS Code extension. 
+A development container template for dbt projects that use [the new Fusion engine](https://github.com/dbt-labs/dbt-fusion) with the official dbt VS Code extension.
 
 ## What's a dev container?
 - A dev container is a Docker container specifically configured to serve as a fully featured, consistent, isolated, and portable development environment
 - Defined in `.devcontainer/devcontainer.json` within a project
-- Read more about them in the [GitHub Docs](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
+- Read more about them in [GitHub Docs](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
+
+## Why should I use dbt-fusion within a container? 
+[dbt-fusion](https://github.com/dbt-labs/dbt-fusion) is written in [Rust](https://www.rust-lang.org/), not Python. So Python virtual environments like `venv` don’t apply here. Instead, `dbt-fusion` installs as a standalone app (called a “binary”) directly onto your system. That makes it easy to run, but it also means it could potentially clash with other dbt tools you have installed, especially Python-based `dbt-core` packages. If you want to avoid that, using a dev container is a solid option.
 
 ## Requirements
 - [Docker Desktop](https://docs.docker.com/desktop/)

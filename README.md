@@ -7,7 +7,15 @@ A development container template for dbt projects that use [the new Fusion engin
 - Read more about them in [GitHub Docs](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
 
 ## Why should I use dbt-fusion within a container? 
-[dbt-fusion](https://github.com/dbt-labs/dbt-fusion) is written in [Rust](https://www.rust-lang.org/), not Python. So Python virtual environments like `venv` don’t apply here. Instead, `dbt-fusion` installs as a standalone app (called a “binary”) directly onto your system. That makes it easy to run, but it also means it could potentially clash with other dbt tools you have installed, especially Python-based `dbt-core` packages. If you want to avoid that, using a dev container is a solid option.
+[dbt-fusion](https://github.com/dbt-labs/dbt-fusion) is written in [Rust](https://www.rust-lang.org/), not Python, and isn't distributed through or installable from [PyPI](https://pypi.org/) like [dbt-core](https://pypi.org/project/dbt/) is. This means that Python-based virtual environment tools & package managers like `venv`, `pip`, or `uv` don't apply. Instead, the recommended installation method (either via the VS Code extension or directly from the command line) puts the `dbt-fusion` executable--a standalone binary CLI tool--in a directory available through your system’s `PATH`. 
+
+This makes it easy to run, but it can also lead to potential conflicts with other dbt installations, especially if you have both Python-based and Rust-based dbt CLIs on the same machine. If you want to avoid those conflicts or if you want to experiment with different `dbt-fusion` projects in an isolated environment without affecting existing setups, using a development container is a solid option!
+
+#### General benefits of using containers include:
+- Isolated environments for each project (preventing dependency and path conflicts)
+- Reproducible builds and consistent environments across teams
+- Faster setup and onboarding for new contributors
+- Simplified experimentation without impacting your main system configuration or other projects
 
 ## Requirements
 - [Docker Desktop](https://docs.docker.com/desktop/)

@@ -16,8 +16,6 @@
   // Workspace configuration
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  // Enables automatic browser opening for authentication
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y xdg-utils",
   // Configure tool-specific properties.
   "customizations": {
     // Configure properties specific to VS Code.

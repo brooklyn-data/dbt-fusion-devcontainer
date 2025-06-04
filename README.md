@@ -48,7 +48,6 @@ For a detailed configuration (and comments about what each is for), check out th
      ],
      "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
      "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-     "postCreateCommand": "sudo apt-get update && sudo apt-get install -y xdg-utils", // enables automatic browser opening for authentication
      "customizations": {
        "vscode": {
          "settings": {

@@ -13,4 +13,7 @@ docker run --rm dbt-fusion-test uv --version
 # Test git installation
 docker run --rm dbt-fusion-test git --version
 
+# Test xdg-utils installation
+docker run --rm dbt-fusion-test xdg-open --version
+
 echo "All tests passed!" 

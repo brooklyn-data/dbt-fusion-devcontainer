@@ -3,8 +3,14 @@ name: Publish Template
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'README.md'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'README.md'
   workflow_dispatch:
 
 jobs:
@@ -75,8 +81,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/dbt-fusion:latest
 
   cleanup-pr-images:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-    needs: publish
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -98,7 +103,7 @@ jobs:
             -e PACKAGE_TYPE=container \
             -e PACKAGE_OWNER=${{ github.repository_owner }} \
             -e PACKAGE_VERSION=pr-${{ github.event.pull_request.number }} \
-            ghcr.io/actions/github-script@v6
+            ghcr.io/actions/github-script@v6 || echo "PR image not found, skipping..."
           
           # Delete staging tag
           docker run --rm \
@@ -107,6 +112,6 @@ jobs:
             -e PACKAGE_TYPE=container \
             -e PACKAGE_OWNER=${{ github.repository_owner }} \
             -e PACKAGE_VERSION=staging \
-            ghcr.io/actions/github-script@v6
+            ghcr.io/actions/github-script@v6 || echo "Staging image not found, skipping..."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

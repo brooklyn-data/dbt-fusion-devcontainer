@@ -17,7 +17,7 @@ This makes it easy to run, but it can also lead to potential conflicts with othe
 - Faster setup and onboarding for new contributors
 - Simplified experimentation without impacting your main system configuration or other projects
 
-Read more here: [Why you should use dev containers with dbt fusion - Brooklyn Data Co.](https://www.brooklyndata.co/ideas/2025/06/11/why-you-should-use-dev-containers-with-dbt-fusion)
+Read more here: [Why You Should Sse Dev Containers with dbt Fusion - Brooklyn Data Co.](https://www.brooklyndata.co/ideas/2025/06/11/why-you-should-use-dev-containers-with-dbt-fusion)
 
 ## Requirements
 - [Docker Desktop](https://docs.docker.com/desktop/)

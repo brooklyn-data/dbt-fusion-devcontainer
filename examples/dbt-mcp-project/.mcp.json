@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "dbt-mcp": {
+      "command": "uvx",
+      "args": [
+        "dbt-mcp"
+      ]
+    },
+    "github-mcp": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--security-opt=no-new-privileges",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PAT}",
+        "-e",
+        "GITHUB_TOOLSETS=${GITHUB_TOOLSETS}",
+        "ghcr.io/github/github-mcp-server"
+      ]
+    },
+    "jira-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.atlassian.com/v1/sse"
+      ]
+    }
+  }
+}

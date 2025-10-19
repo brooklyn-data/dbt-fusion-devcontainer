@@ -1,0 +1,9 @@
+{
+    "permissions": {
+        "allow": [
+            "Bash(find:*)",
+            "WebFetch(domain:docs.anthropic.com)"
+        ]
+    },
+    "enableAllProjectMcpServers": true
+}

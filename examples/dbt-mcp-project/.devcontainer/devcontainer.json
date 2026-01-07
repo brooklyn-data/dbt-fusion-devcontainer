@@ -77,9 +77,7 @@
         "ms-python.python",              // Python language support
         "charliermarsh.ruff",           // Ruff linter and formatter
         "ms-python.vscode-pylance",     // Python language server
-        "tamasfe.even-better-toml",     // TOML file support
         "EditorConfig.EditorConfig",    // EditorConfig support
-        "eamodio.gitlens",             // Enhanced Git capabilities
         "github.vscode-pull-request-github", // GitHub PR support
         "visualstudioexptteam.vscodeintellicode", // AI-assisted IntelliSense
         "dbtlabsinc.dbt"              // Official dbt extension

@@ -95,9 +95,7 @@ For a detailed configuration (and comments about what each is for), check out th
            "ms-python.python",
            "charliermarsh.ruff",
            "ms-python.vscode-pylance",
-           "tamasfe.even-better-toml",
            "EditorConfig.EditorConfig",
-           "eamodio.gitlens",
            "visualstudioexptteam.vscodeintellicode",
            "dbtlabsinc.dbt"
          ]

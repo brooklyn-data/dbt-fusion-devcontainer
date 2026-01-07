@@ -82,8 +82,7 @@
         "eamodio.gitlens",             // Enhanced Git capabilities
         "github.vscode-pull-request-github", // GitHub PR support
         "visualstudioexptteam.vscodeintellicode", // AI-assisted IntelliSense
-        "dbtlabsinc.dbt",              // Official dbt extension
-        "redhat.vscode-yaml"           // YAML support
+        "dbtlabsinc.dbt"              // Official dbt extension
       ]
     }
   },

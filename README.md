@@ -99,8 +99,7 @@ For a detailed configuration (and comments about what each is for), check out th
            "EditorConfig.EditorConfig",
            "eamodio.gitlens",
            "visualstudioexptteam.vscodeintellicode",
-           "dbtlabsinc.dbt",
-           "redhat.vscode-yaml"
+           "dbtlabsinc.dbt"
          ]
        }
      },
